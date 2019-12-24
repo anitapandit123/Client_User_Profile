@@ -1,14 +1,17 @@
 import React, { Fragment } from 'react';
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import Landing from './components/layout/Landing';
-// import Navbar from './components/layout/Navbar';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import './App.css';
 
-import Routers from './components/routes/Router';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Landing from './components/layout/Landing';
+import Navbar from './components/layout/Navbar';
 const App = () => (
-  <Fragment>
-    <Routers />
-  </Fragment>
+  <Router>
+    <Fragment className="App">
+      <Navbar />
+      <Route exact path="/" component={Landing} />
+    </Fragment>
+  </Router>
 
 );
 
