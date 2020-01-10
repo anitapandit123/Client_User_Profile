@@ -1,38 +1,56 @@
+
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Link } from 'react-router-dom';
+import Login from '../auth/Login';
 
-const useStyles = makeStyles({
-    root: {
-        flexGrow: 1,
-    },
-});
-
-export default function Navbar() {
-    const classes = useStyles();
-    const [value, setValue] = React.useState(0);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+const Navbar = () => {
     return (
-        <Paper className={classes.root}>
-            <Tabs
-                value={value}
-                onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-                centered
-            >
-                <Tab label="Profile" />
-                <Tab label="Register" />
-                <Tab label="Log In" />
-            </Tabs>
+        <nav className='navbar bg-dark'>
+            <h1>
+                <Link to='/'>
+                    <i className="fas fa-code" />Dev Connector
+                       </Link>
+            </h1>
+            <a href="!#">Developers</a>
+            <Link to='/login'> LogIn</Link>
+            <Link to='/register'> Register</Link>
 
-        </Paper>
-
-    );
+        </nav>
+    )
 }
+
+export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
