@@ -22,6 +22,7 @@ const Register = (props) => {
     const onSubmit = async e => {
         e.preventDefault();
         if (password !== password2) {
+            console.log(props.setAlert);
             props.setAlert('Passowrd do not match', 'danger');
         } else {
             const newUser = {
@@ -98,4 +99,4 @@ const Register = (props) => {
 
 }
 
-export default connect()(Register);
+export default connect(null, { setAlert })(Register);
