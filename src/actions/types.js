@@ -1,4 +1,2 @@
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
-export const REGIATER_SUCCESS = 'REGIATER_SUCCESS';
-export const REGISTER_FAILURE = 'REGISTER_FAILURE';
