@@ -1,13 +1,14 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { post } from '../../utils/http';
+// import { post } from '../../utils/http';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
 
     const [formData, setFormData] = useState({
         name: '',
@@ -27,18 +28,23 @@ const Register = ({ setAlert }) => {
             console.log(setAlert);
             setAlert('Passowrd do not match', 'danger');
         } else {
-            const newUser = {
-                name,
-                email,
-                password
-            };
-            try {
-                const res = await post('/users', newUser)
-                console.log(res);
-            } catch (err) {
-                console.error(err.response.data);
-            }
+            register({ name, email, password });
         }
+
+        // } else {
+        //     const newUser = {
+        //         name,
+        //         email,
+        //         password
+        //     };
+        //     try {
+        //         const res = await post('/users', newUser)
+        //         console.log(res);
+        //     } catch (err) {
+        //         console.error(err.response.data);
+        //     }
+        // } 
+
 
     };
 
@@ -57,7 +63,7 @@ const Register = ({ setAlert }) => {
                         name="name"
                         value={name}
                         onChange={e => onChange(e)}
-                        required />
+                    />
                 </div>
 
                 <div className="form-group">
@@ -78,7 +84,7 @@ const Register = ({ setAlert }) => {
                         name="password"
                         value={password}
                         onChange={e => onChange(e)}
-                        minLength="6" />
+                    />
                 </div>
 
                 <div className="form-group">
@@ -87,7 +93,7 @@ const Register = ({ setAlert }) => {
                         name="password2"
                         value={password2}
                         onChange={e => onChange(e)}
-                        minLength="6" />
+                    />
                 </div>
                 <input type="submit" className="btn btn-primary" value="Register" />
             </form>
@@ -101,6 +107,7 @@ const Register = ({ setAlert }) => {
 
 Register.propTypes = {
     setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired
 }
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
