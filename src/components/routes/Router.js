@@ -7,6 +7,9 @@ import Register from '../auth/Register';
 import Landing from '../layout/Landing'
 import Alert from '../layout/Alert';
 import { Fragment } from 'react';
+import setAuthToken from '../../utils/setAuthToken';
+
+
 
 
 const Routers = () => {

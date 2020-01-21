@@ -1,6 +1,9 @@
 import {
     REGISTER_SUCCESS,
-    REGISTER_FAILURE
+    REGISTER_FAILURE,
+    USER_LOADED,
+    AUTH_ERROR
+
 } from '../actions/types';
 
 const initialState = {
@@ -15,12 +18,29 @@ export default function (state = initialState, action) {
 
 
     switch (type) {
+        case USER_LOADED:
+            return {
+                ...state,
+                isAuthenticated: true,
+                loading: false,
+                user: payload // it will be name,email and avatar but not password beacause in backend we hv done .select(-password)
+            }
+
         case REGISTER_SUCCESS:
             localStorage.setItem('token', payload.token);
             return {
                 ...state,
                 ...payload,
                 isAuthenticated: true,
+                loading: false
+            }
+
+        case AUTH_ERROR:
+            localStorage.removeItem('token');
+            return {
+                ...state,
+                token: null,
+                isAuthenticated: false,
                 loading: false
             }
 
