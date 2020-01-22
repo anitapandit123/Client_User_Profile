@@ -1,7 +1,7 @@
 
-import { post, axiosInstance, get } from '../utils/http';
+import { post, get } from '../utils/http';
 import { setAlert } from './alert';
-import setAuthToken from '../utils/setAuthToken';
+import { setAuthToken } from '../utils/setAuthToken';
 
 import {
     REGISTER_SUCCESS,
@@ -16,8 +16,9 @@ export const loadUser = () => async dispatch => {
     if (localStorage.token) {
         setAuthToken(localStorage.token);
     }
+
     try {
-        const res = await get('auth');
+        const res = await get('/auth');
         dispatch({
             type: USER_LOADED,
             payload: res.data
@@ -69,16 +70,3 @@ export const register = ({ name, email, password }) => async dispatch => {
     }
 
 }
-
-// const newUser = {
-    //         name,
-    //         email,
-    //         password
-    //     };
-    //     try {
-    //         const res = await post('/users', newUser)
-    //         console.log(res);
-    //     } catch (err) {
-    //         console.error(err.response.data);
-    //     }
-    // } 
