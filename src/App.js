@@ -1,31 +1,31 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { useEffect } from 'react'
+import Alert from './components/layout/Alert';
+// import { setAuthToken } from './utils/setAuthToken';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//import redux
-import { Provider } from 'react-redux';
 import store from './store';
 import Routers from './components/routes/Router';
 import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token)
-}
 
+// if (localStorage.token) {
+//   setAuthToken(localStorage.token)
+// }
 
 const App = () => {
-  useEffect(() => { // when state update it will keep running,,its a constant loop
+  useEffect(() => {
     store.dispatch(loadUser());
-  }, []);
+  }, [])
   return (
-    <Provider store={store} >
-      <Routers />
+    <Provider store={store}>
+      <Routers></Routers>
     </Provider>
   )
+}
+  ;
 
-
-};
 
 
 

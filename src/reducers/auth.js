@@ -24,8 +24,7 @@ export default function (state = initialState, action) {
                 isAuthenticated: true,
                 loading: false,
                 user: payload // it will be name,email and avatar but not password beacause in backend we hv done .select(-password)
-            }
-
+            };
         case REGISTER_SUCCESS:
             localStorage.setItem('token', payload.token);
             return {
@@ -33,18 +32,9 @@ export default function (state = initialState, action) {
                 ...payload,
                 isAuthenticated: true,
                 loading: false
-            }
-
-        case AUTH_ERROR:
-            localStorage.removeItem('token');
-            return {
-                ...state,
-                token: null,
-                isAuthenticated: false,
-                loading: false
-            }
-
+            };
         case REGISTER_FAILURE:
+        case AUTH_ERROR:
             localStorage.removeItem('token');
             return {
                 ...state,
@@ -57,3 +47,13 @@ export default function (state = initialState, action) {
     }
 
 }
+
+
+//case REGISTER_FAILURE:
+// localStorage.removeItem('token');
+        // return {
+        //     ...state,
+        //     token: null,
+        //     isAuthenticated: false,
+        //     loading: false
+        // }
