@@ -2,7 +2,9 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
     USER_LOADED,
-    AUTH_ERROR
+    AUTH_ERROR,
+    LOGIN_SCUCCESS,
+    LOG_IN_FAIL
 
 } from '../actions/types';
 
@@ -26,6 +28,7 @@ export default function (state = initialState, action) {
                 user: payload // it will be name,email and avatar but not password beacause in backend we hv done .select(-password)
             };
         case REGISTER_SUCCESS:
+        case LOGIN_SCUCCESS:
             localStorage.setItem('token', payload.token);
             return {
                 ...state,
@@ -35,6 +38,7 @@ export default function (state = initialState, action) {
             };
         case REGISTER_FAILURE:
         case AUTH_ERROR:
+        case LOG_IN_FAIL:
             localStorage.removeItem('token');
             return {
                 ...state,

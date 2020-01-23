@@ -7,7 +7,10 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
     USER_LOADED,
-    AUTH_ERROR
+    AUTH_ERROR,
+    LOGIN_SCUCCESS,
+    LOG_IN_FAIL
+
 } from './types';
 
 //LOAD USER (RETURN USER LOADED)
@@ -18,7 +21,7 @@ export const loadUser = () => async dispatch => {
     }
 
     try {
-        const res = await get('/auth');
+        const res = await get('api/auth');
         dispatch({
             type: USER_LOADED,
             payload: res.data
@@ -52,12 +55,13 @@ export const register = ({ name, email, password }) => async dispatch => {
 
     try {
 
-        const res = await post('/users', newUser, config);
+        const res = await post('/api/auth', newUser, config);
         console.log(res);
         dispatch({
             type: REGISTER_SUCCESS,
             payload: res.data
         });
+        dispatch(loadUser());
 
     } catch (err) {
         const errors = err.response.data.errors;
@@ -69,4 +73,39 @@ export const register = ({ name, email, password }) => async dispatch => {
         });
     }
 
+}
+
+
+//LOGIN USER
+export var login = ({ email, password }) => async dispatch => {
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const newUser = {
+        email,
+        password
+    };
+
+    try {
+        const res = await post('/auth', newUser, config);
+        dispatch({
+            type: LOGIN_SCUCCESS,
+            payload: res.data
+        });
+        dispatch(loadUser());
+
+    } catch (err) {
+        const errors = err.response.data.errors;
+
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+        }
+        dispatch({
+            type: LOG_IN_FAIL
+        });
+    }
 }

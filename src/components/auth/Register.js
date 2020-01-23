@@ -32,12 +32,12 @@ const Register = ({ setAlert, register }) => {
 
         }
 
-        // } else {
-        //     const newUser = {
-        //         name,
-        //         email,
-        //         password
-        //     };
+        //     } else {
+        //         const newUser = {
+        //             name,
+        //             email,
+        //             password
+        //         };
         //     try {
         //         const res = await post('/users', newUser)
         //         console.log(res);
