@@ -1,22 +1,31 @@
-import React, { Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import './App.css';
-
-
-//import redux
-
+import React from 'react';
 import { Provider } from 'react-redux';
-import store from './store';
-
-
+import { useEffect } from 'react'
+import Alert from './components/layout/Alert';
+// import { setAuthToken } from './utils/setAuthToken';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Routers from './components/routes/Router';
-const App = () => (
-  <Provider>
-  <Routers store={store}/>
-  </Provider>
 
-);
+import store from './store';
+import Routers from './components/routes/Router';
+import { loadUser } from './actions/auth';
+
+
+// if (localStorage.token) {
+//   setAuthToken(localStorage.token)
+// }
+
+const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, [])
+  return (
+    <Provider store={store}>
+      <Routers></Routers>
+    </Provider>
+  )
+}
+  ;
+
 
 
 
