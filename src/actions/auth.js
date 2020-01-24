@@ -77,7 +77,7 @@ export const register = ({ name, email, password }) => async dispatch => {
 
 
 //LOGIN USER
-export var login = ({ email, password }) => async dispatch => {
+export const login = ({ email, password }) => async dispatch => {
 
     const config = {
         headers: {
