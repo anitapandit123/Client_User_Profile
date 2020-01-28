@@ -21,7 +21,7 @@ export const loadUser = () => async dispatch => {
     }
 
     try {
-        const res = await get('api/auth');
+        const res = await get('/auth');
         dispatch({
             type: USER_LOADED,
             payload: res.data
@@ -46,7 +46,6 @@ export const register = ({ name, email, password }) => async dispatch => {
         }
     };
 
-
     const newUser = {
         name,
         email,
@@ -55,7 +54,7 @@ export const register = ({ name, email, password }) => async dispatch => {
 
     try {
 
-        const res = await post('/api/auth', newUser, config);
+        const res = await post('/users', newUser, config);
         console.log(res);
         dispatch({
             type: REGISTER_SUCCESS,
@@ -77,21 +76,19 @@ export const register = ({ name, email, password }) => async dispatch => {
 
 
 //LOGIN USER
-export var login = ({ email, password }) => async dispatch => {
+export const login = (email, password) => async dispatch => {
 
     const config = {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         }
     };
 
-    const newUser = {
-        email,
-        password
-    };
+    const body = { email, password };
 
     try {
-        const res = await post('/auth', newUser, config);
+        const res = await post('/auth', body, config);
+        console.log(res);
         dispatch({
             type: LOGIN_SCUCCESS,
             payload: res.data
