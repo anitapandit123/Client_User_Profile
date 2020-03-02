@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -36,13 +36,10 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                     <i className="fas fa-code" /> Dev Connector
                        </Link>
             </h1>
-
-
-
-
+            {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)}
         </nav>
-    )
-}
+    );
+};
 
 Navbar.propTypes = {
     logout: PropTypes.func.isRequired,

@@ -7,6 +7,7 @@ import Landing from '../layout/Landing'
 import Alert from '../layout/Alert';
 import { Fragment } from 'react';
 import { setAuthToken } from '../../utils/setAuthToken';
+import { Dashboard } from '../dashboard/Dashboard';
 
 
 
@@ -29,7 +30,7 @@ const Routers = () => {
                         <Route exact path='/register' component={Register} />
                     </Switch>
                     <Switch>
-                        <Route exact path='/landing' component={Landing} />
+                        <Route exact path='/dashboard' component={Dashboard} />
                     </Switch>
                 </section>
             </Fragment>
