@@ -8,14 +8,14 @@ import {
     UPDATE_PROFILE,
     CLEAR_PROFILE,
     ACCOUNT_DELETED,
-    GET_REPOS,
-
+    GET_REPOS
 } from './types';
 
-// get current user profile
+// Get current users profile
 export const getCurrentProfile = () => async dispatch => {
     try {
         const res = await axios.get('/api/profile/me');
+
         dispatch({
             type: GET_PROFILE,
             payload: res.data
@@ -28,7 +28,7 @@ export const getCurrentProfile = () => async dispatch => {
     }
 };
 
-//get all profiles
+// Get all profiles
 export const getProfiles = () => async dispatch => {
     dispatch({ type: CLEAR_PROFILE });
 
@@ -47,19 +47,15 @@ export const getProfiles = () => async dispatch => {
     }
 };
 
-
-// get profile by id
-export const getProfileById = (userId) => async dispatch => {
-    dispatch({ type: GET_PROFILE });
-
+// Get profile by ID
+export const getProfileById = userId => async dispatch => {
     try {
-
         const res = await axios.get(`/api/profile/user/${userId}`);
+
         dispatch({
             type: GET_PROFILE,
             payload: res.data
         });
-
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
@@ -68,8 +64,24 @@ export const getProfileById = (userId) => async dispatch => {
     }
 };
 
-//create or update profile
+// Get Github repos
+export const getGithubRepos = username => async dispatch => {
+    try {
+        const res = await axios.get(`/api/profile/github/${username}`);
 
+        dispatch({
+            type: GET_REPOS,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+};
+
+// Create or update profile
 export const createProfile = (
     formData,
     history,
@@ -92,7 +104,7 @@ export const createProfile = (
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
 
         if (!edit) {
-            history.push('/dashboard')
+            history.push('/dashboard');
         }
     } catch (err) {
         const errors = err.response.data.errors;
@@ -106,7 +118,7 @@ export const createProfile = (
             payload: { msg: err.response.statusText, status: err.response.status }
         });
     }
-}
+};
 
 // Add Experience
 export const addExperience = (formData, history) => async dispatch => {
@@ -140,6 +152,7 @@ export const addExperience = (formData, history) => async dispatch => {
         });
     }
 };
+
 // Add Education
 export const addEducation = (formData, history) => async dispatch => {
     try {
@@ -229,5 +242,3 @@ export const deleteAccount = () => async dispatch => {
         }
     }
 };
-
-
