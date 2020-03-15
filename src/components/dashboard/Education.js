@@ -25,4 +25,13 @@ const Education = ({ education, deleteEducation }) => {
             </td>
         </tr>
     ));
+
+
+
+    return educations;
 }
+
+Education.propTypes = {
+    education: PropTypes.array.isRequired,
+    deleteEducation: PropTypes.func.isRequired
+};
