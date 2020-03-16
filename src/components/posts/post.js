@@ -7,7 +7,7 @@ import { getPosts } from '../../actions/post';
 
 
 
-const Posts => ({ getPosts, post: { posts, loading } }) => {
+const Posts = ({ getPosts, post: { posts, loading } }) => {
     useEffect(() => {
         getPosts();
     }, [getPosts]);
