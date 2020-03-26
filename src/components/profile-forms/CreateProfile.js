@@ -80,12 +80,36 @@ const CreateProfile = ({
                         <small className="form-text">Give us an idea of where you are at in your career</small>
                     </div>
                     <div className="form-group">
+                        <label>Company</label>
                         <input type="text"
                             placeholder="Company"
                             value={company}
                             onChange={e => onChange(e)} />
                         <small className='form-text'>
                             Could be your own company or one you work for
+					</small>
+                    </div>
+                    <div className="form-group">
+                        <label>Website</label>
+                        <input
+                            type="text"
+                            placeholder="Website"
+                            name="website"
+                            value={website}
+                            onChange={e => onChange(e)} />
+                        <small className='form-text'>
+                            Could be your own or a company website
+					</small>
+                    </div>
+                    <div className="form-group">
+                        <label>Location</label>
+                        <input
+                            type="text"
+                            placeholder="Location"
+                            value={location}
+                            onChange={e => onChange(e)} />
+                        <small className='form-text'>
+                            City & state suggested (eg. Kathmandu, Pokhara)
 					</small>
                     </div>
                 </form>
